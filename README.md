@@ -29,6 +29,8 @@
 
 **※aws cloud9での操作**
 
+プロジェクトのenvironmentを立ち上げておく．
+
 以下のコマンドを順番に実行する．
 ```bash
 $ cd ~/.ssh
@@ -73,7 +75,6 @@ ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCu8btWWrpYcfx3Wn02FMs1v0DnZw+vNJi4U9Jq4Jq/
 ```
 
 
-
 ## **3. 作成したssh-keyをgithubに登録する．**
 
 **※ブラウザでの操作**
@@ -86,9 +87,12 @@ githubのサイトにaws cloud9で作成したssh-keyを登録する．
 
 **※aws cloud9での操作**
 
-以下のコマンドを実行
+【重要】まずプロジェクトのディレクトリに移動する，
+
+以下のコマンドを実行する．
+
 ```bash
-$ cd ~/environment/cms
+$ cd ~/environment/プロジェクト名
 ```
 
 ```bash
@@ -123,9 +127,11 @@ lolipopのページの右上から「SSH公開鍵の追加」をクリック．
 ```bash
 $ cd ~/.ssh
 ```
+
 ```bash
 $ ssh-keygen
 ```
+
 ```bash
 $ cat ~/.ssh/id_rsa.pub
 ```
@@ -167,6 +173,8 @@ reliable-amami-8204@ssh-aws-laravel01:~$
 ## **6. lolipopでssh-keyを発行し，githubに登録する．**
 
 **※lolipopでの操作**
+
+sshキーを作成し，マネクラとGithubの間で通信できるようにする．
 
 ```bash
 $ cd .ssh
@@ -277,7 +285,7 @@ export PATH=$PATH:/var/www/bin
 $ cd /var/www
 ```
 
-laravelの準備
+laravelの準備をする．
 
 ```bash
 $ composer global require 'laravel/installer'
@@ -291,7 +299,8 @@ Writing lock file
 Generating autoload files
 ```
 
-githubから自分が作成したプロジェクトのファイルをダウンロードする．
+githubから自分が作成したプロジェクトのファイルをダウンロードして`project`ディレクトリにコピーする．
+
 ```bash
 $ git clone YOUR_REPOSITORY_URL project
 ```
@@ -313,6 +322,8 @@ Checking connectivity... done.
 $ cd /var/www/project/
 ```
 
+必要なライブラリをインストールする．
+
 ```bash
 $ composer install
 ```
@@ -328,7 +339,7 @@ Discovered Package: nunomaduro/collision
 Package manifest generated successfully.
 ```
 
-引き続き，以下を実行する．
+設定ファイルを準備する．
 
 ```bash
 $ cp .env.example .env
