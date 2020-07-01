@@ -255,7 +255,7 @@ $ php composer-setup.php
 All settings correct for using Composer
 Downloading...
 
-Composer (version 1.8.6) successfully installed to: /var/www/bin/composer.phar
+Composer (version 1.10.8) successfully installed to: /var/www/bin/composer.phar
 Use it: php composer.phar
 ```
 
@@ -293,10 +293,13 @@ $ composer global require 'laravel/installer'
 
 実行結果
 ```bash
+...
 symfony/console suggests installing psr/log (For using the console logger)
 guzzlehttp/guzzle suggests installing psr/log (Required for using the Log middleware)
 Writing lock file
 Generating autoload files
+11 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
 ```
 
 githubから自分が作成したプロジェクトのファイルをダウンロードして`project`ディレクトリにコピーする．
@@ -337,6 +340,8 @@ Discovered Package: laravel/tinker
 Discovered Package: nesbot/carbon
 Discovered Package: nunomaduro/collision
 Package manifest generated successfully.
+43 packages you are using are looking for funding.
+Use the `composer fund` command to find out more!
 ```
 
 設定ファイルを準備する．
@@ -368,8 +373,30 @@ DB_PASSWORD=プロジェクト作成時に決めたpwd
 $ php artisan migrate
 ```
 
+実行結果
+
+```bash
+Migration table created successfully.
+Migrating: 2014_10_12_000000_create_users_table
+Migrated:  2014_10_12_000000_create_users_table (0.01 seconds)
+Migrating: 2014_10_12_100000_create_password_resets_table
+Migrated:  2014_10_12_100000_create_password_resets_table (0.01 seconds)
+Migrating: 2019_08_19_000000_create_failed_jobs_table
+Migrated:  2019_08_19_000000_create_failed_jobs_table (0 seconds)
+Migrating: 2020_06_23_024905_create_tasks_table
+Migrated:  2020_06_23_024905_create_tasks_table (0 seconds)
+```
+
+アプリケーションキーを作成する．
+
 ```bash
 $ php artisan key:generate
+```
+
+実行結果
+
+```bash
+Application key set successfully.
 ```
 
 ルートディレクトリを設定できないので，/var/www/htmlをシンボリックリンクにして/var/www/project/public/を参照する．
