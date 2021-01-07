@@ -1,37 +1,38 @@
-# **aws cloud9で作成したプロジェクトをlolipopマネージドクラウドにデプロイするまでの手順**
+# **aws cloud9 で作成したプロジェクトを lolipop マネージドクラウドにデプロイするまでの手順**
 
 作成日：2019/06/20
 
 更新日：2020/07/01
 
 ## **0.目次**
-- 1. マネクラでプロジェクトを作成する．
-- 2. aws cloud9でssh-keyを作成する．
-- 3. 作成したssh-keyをgithubに登録する．
-- 4. aws cloud9で作成したプロダクトをgithubにpuahする．
-- 5. PCのターミナルでlilopopのサーバにログインする．
-- 6. lolipopでssh-keyを発行し，githubに登録する．
-- 7. lolipopへデプロイする．
 
-実装したプロジェクトをGithubにpushし，デプロイ先のサーバ（マネージドクラウド）にログインしてGithub上のプロジェクトをclone(or pull)することでデプロイを実現する．
+- 1. マネクラでプロジェクトを作成する．
+- 2. aws cloud9 で ssh-key を作成する．
+- 3. 作成した ssh-key を github に登録する．
+- 4. aws cloud9 で作成したプロダクトを github に puah する．
+- 5. PC のターミナルで lilopop のサーバにログインする．
+- 6. lolipop で ssh-key を発行し，github に登録する．
+- 7. lolipop へデプロイする．
+
+実装したプロジェクトを Github に push し，デプロイ先のサーバ（マネージドクラウド）にログインして Github 上のプロジェクトを clone(or pull)することでデプロイを実現する．
 
 ![deploy_image](./images/deploy_image.png)
 
 ## **1. マネクラでプロジェクトを作成する．**
 
 **※ブラウザでの操作**
-マネクラに登録してプロジェクトを作成しておく．PHPを選択し，プロジェクト名は任意に設定．
+マネクラに登録してプロジェクトを作成しておく．PHP を選択し，プロジェクト名は任意に設定．
 
 登録したらプロジェクトページを開いておくと良い．
 
+## **2. aws cloud9 で ssh-key を作成する．**
 
-## **2. aws cloud9でssh-keyを作成する．**
+**※aws cloud9 での操作**
 
-**※aws cloud9での操作**
-
-プロジェクトのenvironmentを立ち上げておく．
+プロジェクトの environment を立ち上げておく．
 
 以下のコマンドを順番に実行する．
+
 ```bash
 $ cd ~/.ssh
 ```
@@ -41,6 +42,7 @@ $ ssh-keygen
 ```
 
 実行結果
+
 ```bash
 Generating public/private rsa key pair.
 Enter file in which to save the key (/home/ubuntu/.ssh/id_rsa):
@@ -64,28 +66,29 @@ The key's randomart image is:
 +----[SHA256]-----+
 ```
 
-引き続き以下を実行し，ssh-keyを表示する．
+引き続き以下を実行し，ssh-key を表示する．
+
 ```bash
 $ cat ~/.ssh/id_rsa.pub
 ```
 
 実行結果
+
 ```bash
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQCu8btWWrpYcfx3Wn02FMs1v0DnZw+vNJi4U9Jq4Jq/K1f2uv40fOrfQ26asux9ME6ai+aCyNnmz7oQnWv9gcqMEHtVLzi4x0CJ11oskIqNoAJe0do2wwwwwwwwwwwwwwwwg9WnbB0aqaJtntZOs4I8RM3SD5LPvGtktPhpjBWLK4lt6bV+KDxYuWPN5ciVX7fp7H9MI7jJu/ksvDXsU4OStutPyAucPHt6iBVC3c3IlL124yoevkZGOYZyXHX+jlRcRO8oyCa0L6cRHUzi8djBcuBAX7Uwpk1aS5kplzCsLLifALwePiiy+I8Calsq9ThX+uqo16VXiZkY/+JKJDH/ ubuntu@ip-172-31-35-172
 ```
 
-
-## **3. 作成したssh-keyをgithubに登録する．**
+## **3. 作成した ssh-key を github に登録する．**
 
 **※ブラウザでの操作**
 
-githubのサイトにaws cloud9で作成したssh-keyを登録する．
+github のサイトに aws cloud9 で作成した ssh-key を登録する．
 
-プロジェクト用のリポジトリを新しく作成し，urlをコピーしておく．
+プロジェクト用のリポジトリを新しく作成し，url をコピーしておく．
 
-## **4. aws cloud9で作成したプロダクトをgithubにpuahする．**
+## **4. aws cloud9 で作成したプロダクトを github に puah する．**
 
-**※aws cloud9での操作**
+**※aws cloud9 での操作**
 
 【重要】まずプロジェクトのディレクトリに移動する，
 
@@ -115,15 +118,15 @@ $ git commit -m"first commit"
 $ git push origin master
 ```
 
-
-## **5. PCのターミナルでlilopopのサーバにログインする．**
+## **5. PC のターミナルで lilopop のサーバにログインする．**
 
 **※ブラウザでの操作**
-lolipopのページの右上から「SSH公開鍵の追加」をクリック．
+lolipop のページの右上から「SSH 公開鍵の追加」をクリック．
 
-自分のPCに保存されているssh-keyを適当に登録する．
+自分の PC に保存されている ssh-key を適当に登録する．
 
-**ない場合は，PCのターミナルで**以下の流れで作成&表示し，マネクラに登録する．
+**ない場合は，PC のターミナルで**以下の流れで作成&表示し，マネクラに登録する．
+
 ```bash
 $ cd ~/.ssh
 ```
@@ -138,15 +141,18 @@ $ cat ~/.ssh/id_rsa.pub
 
 ブラウザでプロジェクトのページを開いていない場合は再度開いておく．
 
-**※PCのターミナルでの操作**
+**※PC のターミナルでの操作**
 
-マネクラのプロジェクトページに表示されている「SSHコマンド」を入力してサーバにアクセスする．
+マネクラのプロジェクトページに表示されている「SSH コマンド」を入力してサーバにアクセスする．
+
+**下記は一例なので必ず「自分のプロジェクト管理画面に表示されている SSH コマンド」を実行すること．**
 
 ```bash
 $ ssh -p 38216 reliable-amami-8204@ssh-1.mc.lolipop.jp
 ```
 
-実行結果．（何か訊かれたらyesで進む）
+実行結果．（何か訊かれたら yes で進む）
+
 ```bash
 The authenticity of host '[ssh-1.mc.lolipop.jp]:38216 ([157.7.190.236]:38216)' can't be established.
 ECDSA key fingerprint is SHA256:fqQ1YxW9OFrAwKVtnt92YIB2Bv6MQfJVGRo73gktLmk.
@@ -166,15 +172,17 @@ export PATH=$PATH:/var/www/bin
 reliable-amami-8204@ssh-aws-laravel01:~$
 ```
 
-この状態で`reliable-hoge-6666@ssh-aws-laravel01:~$ `（←状況によって文字列は異なる）となっていればうまくログインできている状態．
+この状態で`reliable-hoge-6666@ssh-aws-laravel01:~$ `（← 状況によって文字列は異なる）となっていればうまくログインできている状態．
 
-**※以下の「lolipopでの操作」は上記の状態になっていることを確認すること．**
+ある程度時間が経過すると自動的にログアウトされるので，その場合は再度 SSH コマンドを実行するとログインできる．
 
-## **6. lolipopでssh-keyを発行し，githubに登録する．**
+**※以下の「lolipop での操作」は上記の状態になっていることを確認すること．**
 
-**※lolipopでの操作**
+## **6. lolipop で ssh-key を発行し，github に登録する．**
 
-sshキーを作成し，マネクラとGithubの間で通信できるようにする．
+**※lolipop での操作**
+
+ssh キーを作成し，マネクラと Github の間で通信できるようにする．
 
 ```bash
 $ cd .ssh
@@ -185,6 +193,7 @@ $ ssh-keygen
 ```
 
 実行結果
+
 ```bash
 Generating public/private rsa key pair.
 Enter file in which to save the key (/var/www//.ssh/id_rsa):
@@ -207,22 +216,24 @@ The key's randomart image is:
 |    ..www+w .    |
 +----[SHA256]-----+
 ```
+
 ```bash
 $ cat id_rsa.pub
 ```
 
 実行結果
+
 ```bash
 ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDJPmXzhA733dAupv+pVUG6I04agsUSKI7BeekJgBn//1P7Ca96JJkqd1M8yBHARSJxYdSUC31Dn9UpmO87XVLVlVCjmwwwwwwwwwwwwwwwwzIqvRtJmOfvQEfJ/cvBA/bPkrD3V80epwlWiVfWNPSKIZYKVf3LRJI2RoU8WtNSI/Zc8VOH+NOxRVQRQrYaHUSjKDqwFqKK/ttuG4xoRHXPI4Xj4rNn+zfNcd52z0Njq/TtpOAZ6TH6Xtg366sc60HJpIBcQfiz8Kq1mpmw5aLqTzz2l6V0rbsQB0zZCIaqdpFdRUf47aMRBpqK10LPB9N8jC3Gq5Gb1WuJY5Asbzxp reliable-amami-8204@ssh-aws-laravel01.lolipop.io-2adc16106d
 ```
 
 **※ブラウザでの操作**
 
-githubサイトにssh-keyを登録．流れはこれまでと同様．
+github サイトに ssh-key を登録．流れはこれまでと同様．
 
-## **7. lolipopにデプロイする．**
+## **7. lolipop にデプロイする．**
 
-**※lolipopでの作業**
+**※lolipop での作業**
 
 まず，デプロイに関する準備をする．
 
@@ -244,13 +255,14 @@ $ cd bin
 $ php -r "copy('https://getcomposer.org/installer', 'composer-setup.php');"
 ```
 
-composerのセットアップ
+composer のセットアップ
 
 ```bash
 $ php composer-setup.php
 ```
 
 実行結果
+
 ```bash
 All settings correct for using Composer
 Downloading...
@@ -267,13 +279,13 @@ $ mv composer.phar composer
 $ export PATH=$PATH:/var/www/bin
 ```
 
-.bash_profileを開く．
+.bash_profile を開く．
 
 ```bash
 $ vi ~/.bash_profile
 ```
 
-.bash_profileに以下を追記
+.bash_profile に以下を追記
 
 ```bash
 export PATH=$PATH:/var/www/bin
@@ -285,13 +297,14 @@ export PATH=$PATH:/var/www/bin
 $ cd /var/www
 ```
 
-laravelの準備をする．
+laravel の準備をする．
 
 ```bash
 $ composer global require 'laravel/installer'
 ```
 
 実行結果
+
 ```bash
 ...
 symfony/console suggests installing psr/log (For using the console logger)
@@ -302,13 +315,14 @@ Generating autoload files
 Use the `composer fund` command to find out more!
 ```
 
-githubから自分が作成したプロジェクトのファイルをダウンロードして`project`ディレクトリにコピーする．
+github から自分が作成したプロジェクトのファイルをダウンロードして`project`ディレクトリにコピーする．
 
 ```bash
 $ git clone YOUR_REPOSITORY_URL project
 ```
 
 実行結果
+
 ```bash
 Cloning into 'project'...
 Warning: Permanently added the RSA host key for IP address '11.11.111.11' to the list of known hosts.
@@ -332,6 +346,7 @@ $ composer install
 ```
 
 実行結果（長い）
+
 ```bash
 ...
 Discovered Package: beyondcode/laravel-dump-server
@@ -399,7 +414,7 @@ $ php artisan key:generate
 Application key set successfully.
 ```
 
-ルートディレクトリを設定できないので，/var/www/htmlをシンボリックリンクにして/var/www/project/public/を参照する．
+ルートディレクトリを設定できないので，/var/www/html をシンボリックリンクにして/var/www/project/public/を参照する．
 
 ```bash
 $ rm -rf /var/www/html/
@@ -409,6 +424,6 @@ $ rm -rf /var/www/html/
 $ ln -s /var/www/project/public/ /var/www/html
 ```
 
-ブラウザでプロジェクトのurlにアクセスして表示されればOK！
+ブラウザでプロジェクトの url にアクセスして表示されれば OK！
 
 以上である( `･ω･)b
